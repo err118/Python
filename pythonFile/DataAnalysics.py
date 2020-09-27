@@ -21,4 +21,7 @@ def  saleTimeTransfer(timeStr):
 
     time= sales.loc[:,'购药时间']
     newDate= saleTimeTransfer(time)
-    sales.loc[:,'销售时间'] = newDate
+    sales.loc[:,'购药时间'] = newDate
+    sales.loc[:, '购药时间'] = pd.to_datetime(sales.loc[:,'购药时间'], format='%Y-%m-%d', errors='coerce')
+    salesDf = salesDf.dropna(subset=['购药时间', '社保卡号'], how='any')
+
